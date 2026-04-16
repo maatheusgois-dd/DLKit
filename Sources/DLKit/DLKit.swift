@@ -65,7 +65,7 @@ public struct DLKit {
     }
     public static func load(dylib: String) -> ImageSymbols? {
         let index = imageCount
-        guard let handle = dlopen(dylib, RTLD_NOW) else {
+        guard let handle = dlopen(dylib, RTLD_LAZY | RTLD_GLOBAL) else {
             logger("⚠️ dlopen failed \(String(cString: dlerror()))")
             return nil
         }
